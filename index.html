@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table { 
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+}
+td, th {
+border: 0px;
+}
+input[type=text] {
+  padding: 0px 0px;
+  margin: 1px 1px;
+  box-sizing: border-box;
+}
+pre.prettyprint { padding: 20px; border: 10px solid #888 }
+</style>
+</head>
+<body onload="init();">
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<script src="labd.js"></script>
+<script src="lab.js"></script>
+
+<h2 id="myH">Lab 1</h2>
+
+
+<div id = "codeDiv">
+<table style="width:100%">
+  <tr>
+    <th style="width:50%">Kod</th>
+    <th style="width:50%">Açıklama</th>
+  </tr>
+  <tr style="height:80%">
+  <td style="width:50%">
+<pre class="prettyprint", id="code" style="min-height:400px;padding: 20px; border: 10px solid #888">
+</pre>
+</td>
+<td style="width:50%">
+<div id = "Content" style="min-height:400px;padding: 20px; border: 10px solid #888">
+<table style="border: 0px;">
+<thead id="question" style="height:100px;">
+  <tr>
+  <th id="question0" style="text-align:justify"> 
+  </th>
+  </tr>
+  <tr> 
+  <th id="notes" style="text-align:justify"> 
+  </th>
+  </tr>
+  </thead>
+  <tbody id="comments" style="height:100px;">
+  <tr> 
+  <td id="comment0"> 
+  </td>
+  </tr>
+  <tr> 
+  <td id="comment1"> 
+  </td>
+  </tr>
+  </tbody>
+  <tfoot id="console" style="height:200px;">
+
+  </tfoot>
+</table>
+</div>
+</td>
+</table>
+</div>
+
+<button type="button" onclick="next()">Sonraki Soru</button>
+
+</body>
+</html> 
+
