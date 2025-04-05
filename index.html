@@ -1,79 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-<style>
-table { 
-  display: table;
-  border-collapse: separate;
-  border-spacing: 2px;
-  border-color: gray;
-}
-td, th {
-border: 0px;
-}
-input[type=text] {
-  padding: 0px 0px;
-  margin: 1px 1px;
-  box-sizing: border-box;
-}
-pre.prettyprint { padding: 20px; border: 10px solid #888 }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEU CSC</title>
+    <!-- Google Fonts (Örnek: Poppins & Fira Code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- Font Awesome (İkonlar için - isteğe bağlı) -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+    <link rel="stylesheet" href="src/css/styles.css">
 </head>
-<body onload="init();">
-    <div id="timer" style="font-size: 20px; margin-bottom: 20px;">10 dakika 00 saniye</div>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <script src="labd.js"></script>
-    <script src="lab.js"></script>
+<body>
+    <div class="app-container">
 
-<h2 id="myH">Lab 1</h2>
+        <!-- 1. Başlangıç Ekranı (Varsayılan olarak görünür) -->
+        <div id="start-screen" class="screen active">
+            <div class="content-box">
+                <h1 class="app-title">BBG-2 Lab-X soruları</h1>
+                <p class="app-description">Hafta X deneme soruları</p>
+                <div class="test-info">
+                    <p><span class="info-label">Soru Sayısı:</span> <span id="total-questions-info">--</span></p>
+                    <p><span class="info-label">Toplam Süre:</span> <span id="total-time-info">-- Dakika</span></p>
+                </div>
+                <button id="start-button" class="btn btn-primary">Teste Başla</button>
+            </div>
+        </div>
 
+        <!-- 2. Test Ekranı (Başlangıçta gizli) -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="question-counter">Soru 1 / 5</span>
+                </div>
+                <div class="timer-container">
+                    <span class="timer-icon">⏱️</span> <!-- İkon veya Emoji -->
+                    <span id="timer">10:00</span>
+                    <div class="progress-bar-container">
+                        <div id="progress" class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
 
-<div id = "codeDiv">
-<table style="width:100%">
-  <tr>
-    <th style="width:50%">Kod</th>
-    <th style="width:50%">Açıklama</th>
-  </tr>
-  <tr style="height:80%">
-  <td style="width:50%">
-<pre class="prettyprint", id="code" style="min-height:400px;padding: 20px; border: 10px solid #888">
-</pre>
-</td>
-<td style="width:50%">
-<div id = "Content" style="min-height:400px;padding: 20px; border: 10px solid #888">
-<table style="border: 0px;">
-<thead id="question" style="height:100px;">
-  <tr>
-  <th id="question0" style="text-align:justify"> 
-  </th>
-  </tr>
-  <tr> 
-  <th id="notes" style="text-align:justify"> 
-  </th>
-  </tr>
-  </thead>
-  <tbody id="comments" style="height:100px;">
-  <tr> 
-  <td id="comment0"> 
-  </td>
-  </tr>
-  <tr> 
-  <td id="comment1"> 
-  </td>
-  </tr>
-  </tbody>
-  <tfoot id="console" style="height:200px;">
+            <div class="question-area content-box">
+                 <p id="question-text" class="question-text-description">Soru açıklaması buraya gelecek.</p>
+                 <div class="code-section">
+                    <pre id="code" class="code-block"><!-- Kod buraya gelecek --></pre>
+                    <!-- Yorumlar için ayrı bir alan (gerekirse) -->
+                     <div id="comment-feedback" class="comment-feedback">
+                         <span id="comment0"></span>
+                         <span id="comment1"></span>
+                         <!-- Daha fazla yorum alanı eklenebilir -->
+                     </div>
+                 </div>
+            </div>
 
-  </tfoot>
-</table>
-</div>
-</td>
-</table>
-</div>
+            <div class="navigation-buttons">
+                <button id="prev-button" class="btn btn-secondary">Önceki Soru</button>
+                <button id="next-button" class="btn btn-primary">Sonraki Soru</button>
+            </div>
+        </div>
 
-<button type="button" onclick="previous()">Önceki Soru</button>
-<button type="button" id="nextButton" onclick="next()">Sonraki Soru</button>
+        <!-- 3. Sonuç Ekranı (Başlangıçta gizli) -->
+        <div id="results-screen" class="screen">
+            <!-- Sonuç içeriği JavaScript tarafından buraya eklenecek -->
+            <!-- Mevcut results.js kodunun ürettiği HTML buraya gelecek -->
+            <!-- Örnek:
+            <div class="content-box">
+                <h2 class="results-title">Test Sonuçları</h2>
+                <div class="button-group print-button-container results-top-button">...</div>
+                <div class="results-summary">...</div>
+                <div class="result-details-container">
+                     {detailsHTML}
+                </div>
+            </div>
+             -->
+        </div>
 
+    </div>
+
+    <script type="module" src="src/js/main.js"></script>
 </body>
 </html> 
 
