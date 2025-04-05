@@ -1,0 +1,510 @@
+:root {
+    --primary-color: #4a90e2; /* Profesyonel Mavi */
+    --secondary-color: #50e3c2; /* Vurgu Rengi - Turkuaz */
+    --text-color: #333; /* Koyu Gri Metin */
+    --text-light: #666; /* Açık Gri Metin */
+    --bg-color: #f8f9fa; /* Açık Gri Arka Plan */
+    --white: #ffffff;
+    --border-color: #dee2e6;
+    --correct-color: #28a745; /* Yeşil */
+    --incorrect-color: #dc3545; /* Kırmızı */
+    --warning-color: #ffc107; /* Sarı */
+
+    --font-primary: 'Poppins', sans-serif;
+    --font-code: 'Fira Code', monospace;
+
+    --border-radius: 8px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* İçeriği yukarı yasla */
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 800px; /* Maksimum genişlik */
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden; /* Ekran geçişleri için */
+}
+
+/* Ekran Yönetimi */
+.screen {
+    display: none; /* Varsayılan olarak gizli */
+    padding: 2.5rem;
+    animation: fadeIn var(--transition-speed) ease-in-out;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* İçerik Kutusu Stili */
+.content-box {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    /* Gölgeyi app-container'dan buraya taşıyabiliriz veya ikisinde de olabilir */
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+     border: 1px solid var(--border-color);
+}
+
+/* Başlıklar */
+.app-title {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.question-title {
+     color: var(--primary-color);
+     margin-bottom: 1rem;
+     font-size: 1.5rem;
+     font-weight: 600;
+}
+
+/* Paragraflar ve Açıklamalar */
+.app-description,
+.question-text-description {
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+.question-text-description {
+     text-align: left;
+     margin-bottom: 1.5rem;
+}
+
+/* Başlangıç Ekranı Özel Stilleri */
+#start-screen .content-box {
+    text-align: center;
+}
+
+.test-info {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    display: inline-block;
+    text-align: left;
+}
+
+.test-info p {
+    margin-bottom: 0.5rem;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-right: 0.5rem;
+}
+
+/* Buton Stilleri */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #3a7bc8; /* Biraz daha koyu mavi */
+}
+
+.btn-secondary {
+    background-color: #e9ecef;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #d9dde1;
+}
+
+/* Test Ekranı Stilleri */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.progress-info {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.timer-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timer-icon {
+    font-size: 1.2rem;
+}
+
+#timer {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    min-width: 45px; /* Yer kaplaması için */
+    text-align: right;
+}
+
+.progress-bar-container {
+    width: 100px; /* Sabit genişlik */
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--secondary-color);
+    width: 100%; /* Başlangıçta dolu */
+    border-radius: 4px;
+    transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+/* Kod Alanı */
+.code-section {
+    margin-top: 1.5rem;
+}
+
+.code-block {
+    font-family: var(--font-code);
+    background-color: #2d2d2d; /* Koyu tema */
+    color: #f8f8f2; /* Açık renk kod */
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    overflow-x: auto; /* Yatay kaydırma */
+    font-size: 0.95rem;
+    white-space: pre-wrap; /* Satır sonlarını koru */
+    word-wrap: break-word;
+}
+
+/* Input Alanları (Kod içinde) */
+.code-block input[type="text"] {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--white);
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--font-code);
+    font-size: 0.95rem;
+    margin: 0 0.2rem; /* Küçük boşluklar */
+}
+
+.code-block input[type="text"]:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 5px rgba(80, 227, 194, 0.5);
+}
+
+/* Geri Bildirim Alanı (Yorumlar) */
+.comment-feedback {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.2em; /* Boşken de yer kaplasın */
+}
+.comment-feedback span {
+    display: block; /* Alt alta */
+    margin-bottom: 0.5rem;
+}
+
+/* Navigasyon Butonları */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+}
+
+/* Sonuç Ekranı Stilleri */
+#results-screen .content-box {
+    /* Sonuçlar için özel padding veya stil gerekirse */
+}
+
+.results-title {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Sonuç Özeti */
+.results-summary {
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.results-summary h3 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.summary-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Daha iyi boşluk */
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.chart-container {
+    flex-shrink: 0;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Biraz daha boşluk */
+    min-width: 180px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 0.5rem;
+    width: 100%;
+}
+
+.summary-label {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.summary-value {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.summary-value.correct {
+    color: var(--correct-color);
+}
+
+.summary-value.incorrect {
+    color: var(--incorrect-color);
+}
+
+/* Donut Grafik */
+.donut-chart {
+    transform: rotate(-90deg);
+}
+
+.donut-background {
+    fill: none;
+    stroke: #e9ecef;
+}
+
+.donut-progress {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.8s ease-out; /* Daha yavaş animasyon */
+}
+
+.donut-text {
+    font-size: 1.6rem;
+    font-weight: 700;
+    fill: var(--primary-color);
+    transform: rotate(90deg);
+    transform-origin: center;
+}
+
+/* Sonuç Detayları */
+.result-details-container {
+    /* Detay listesi için bir konteyner (opsiyonel) */
+}
+
+.result-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--white);
+    transition: box-shadow var(--transition-speed) ease;
+}
+
+.result-item:hover {
+     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.result-item.correct {
+    border-left: 5px solid var(--correct-color);
+}
+
+.result-item.incorrect {
+    border-left: 5px solid var(--incorrect-color);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.question-number {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.result-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.result-item.correct .result-status {
+    background-color: #eaf6ec;
+    color: var(--correct-color);
+}
+
+.result-item.incorrect .result-status {
+    background-color: #fbebec;
+    color: var(--incorrect-color);
+}
+
+.result-details p {
+    margin-bottom: 0.8rem;
+    color: var(--text-light);
+}
+
+.result-details strong {
+    color: var(--text-color);
+    font-family: var(--font-code); /* Cevaplar için kod fontu */
+}
+
+.result-details .question-text {
+     font-weight: 500;
+     color: var(--text-color);
+     font-size: 1.05rem;
+}
+
+.correct-message {
+    color: var(--correct-color);
+    font-weight: 500;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.explanation {
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+/* PDF Kaydet Butonu */
+.print-button-container {
+    text-align: center;
+    margin-bottom: 2rem; /* Özetin üstünde boşluk */
+}
+
+.save-pdf-button {
+    /* btn ve btn-secondary stillerini kullanabilir veya özelleştirebilir */
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+}
+.save-pdf-button:hover {
+     background-color: #45ccb3;
+}
+
+/* Yazdırma Stilleri */
+@media print {
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+        background: none;
+        color: #000;
+    }
+    .app-container, .content-box, .results-summary, .result-item {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        padding: 1rem;
+    }
+    .screen {
+        display: none !important; /* Önce hepsini gizle */
+    }
+    #results-screen {
+        display: block !important; /* Sadece sonuçları göster */
+        padding: 0;
+    }
+    /* Yazdırmada gizlenecekler */
+    .quiz-header, .navigation-buttons, .print-button-container, .result-details-container /* veya .result-item */ {
+        display: none !important;
+    }
+    /* Yazdırmada özet görünsün */
+     .results-summary {
+        display: block;
+        background: #eee;
+        margin-bottom: 1rem;
+    }
+    /* Yazdırma için grafik renkleri */
+    .donut-progress { stroke: #333; }
+    .donut-background { stroke: #ddd; }
+    .donut-text { fill: #000; }
+    .summary-value.correct { color: #006400; } /* Koyu Yeşil */
+    .summary-value.incorrect { color: #8B0000; } /* Koyu Kırmızı */
+} 
