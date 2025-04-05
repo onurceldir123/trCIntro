@@ -54,6 +54,7 @@ Proje ES6 modüllerini kullandığından, tarayıcı güvenlik kısıtlamaları 
     *(Varsayılan port 8000'dir. Farklı bir port kullanmak için `python3 -m http.server <PORT_NUMARASI>` şeklinde çalıştırabilirsiniz, örneğin `python3 -m http.server 8080`)*
 4.  Web tarayıcınızı açın ve adres çubuğuna `http://localhost:8000` (veya farklı bir port belirlediyseniz o port numarasını) yazın.
 
-## Katkıda Bulunma
+## Katkıda Bulunanlar
 
-Kod iyileştirmeleri, yeni soru eklemeleri veya hata düzeltmeleri için katkılar memnuniyetle karşılanır. Lütfen bir Pull Request açın veya bir Issue oluşturun.
+*   Erdem Alkım
+*   Onur Mert Çeldir
